@@ -12,6 +12,7 @@ import Contact from './pages/contact';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Search from '../src/pages/search';
+import Course from './Controller/Course';
 
 
 function App() {
@@ -25,13 +26,23 @@ function App() {
         <Route path='/contact-us' component={Contact} />
         <Route path='/sign-up' component={SignUp} />
         <Route path='/sign-in' component={SignIn}/>
+       
 
         <div className="container-fluid">
+       
      
      <img src = {logo} className="text-center bg-info p-3" className = "logo">
 
      </img>
+     <Course></Course>
      <Search></Search>
+     
+     
+     {/* <li className="text-center bg-info p-3">
+                <Route to={"/coursedata"} className="text-center bg-info p-3">
+                  Course Data
+                </Route>
+              </li> */}
      
         {/* <h1 className="text-center bg-info p-3">Online Courses</h1> */}
         <CourseInfo></CourseInfo>

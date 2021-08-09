@@ -21,35 +21,35 @@ var fakeData =
             "price":1099,
             "img":"https://www.freecodecamp.org/news/content/images/size/w2000/2020/05/Python-language.png"
         },
-        {
-            "id":3,
-            "title": "C/C++ Course",
-            "author": "Josh Lospinoso",
-            "price":699,
-            // "img":"https://miro.medium.com/max/1400/1*mDKusLBkGKBWW4aycK4PCA.png"
-        },
-        {
-            "id":4,
-            "title": "AutoDesk AutoCad",
-            "author": "James A Leach",
-            "price":1299,
-            // "img":"https://5.imimg.com/data5/RG/ME/ZN/SELLER-2794919/1-500x500.jpg"
-        },
-        {
-            "id":5,
-            "title": "Catia V5",
-            "author": "4D Infotech",
-            "price":2599,
-            // "img":"https://img-a.udemycdn.com/course/240x135/27970_dbe6_6.jpg"
-        },
-        {
-            "id":6,
-            "title": "AWS Certified Solutions",
-            "author": "Faye Ellis",
-            "price":1999,
-            // "img":"https://img-a.udemycdn.com/course/240x135/362328_91f3_10.jpg"
-        }
+        // {
+        //     "id":3,
+        //     "title": "C/C++ Course",
+        //     "author": "Josh Lospinoso",
+        //     "price":699,
+        //     // "img":"https://miro.medium.com/max/1400/1*mDKusLBkGKBWW4aycK4PCA.png"
+        // },
+    //     {
+    //         "id":4,
+    //         "title": "AutoDesk AutoCad",
+    //         "author": "James A Leach",
+    //         "price":1299,
+    //         // "img":"https://5.imimg.com/data5/RG/ME/ZN/SELLER-2794919/1-500x500.jpg"
+    //     },
+    //     {
+    //         "id":5,
+    //         "title": "Catia V5",
+    //         "author": "4D Infotech",
+    //         "price":2599,
+    //         // "img":"https://img-a.udemycdn.com/course/240x135/27970_dbe6_6.jpg"
+    //     },
+    //     {
+    //         "id":6,
+    //         "title": "AWS Certified Solutions",
+    //         "author": "Faye Ellis",
+    //         "price":1999,
+    //         // "img":"https://img-a.udemycdn.com/course/240x135/362328_91f3_10.jpg"
+    //     }
        
-    ];
+     ];
 
 export default fakeData;
