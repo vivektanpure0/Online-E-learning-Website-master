@@ -86,4 +86,17 @@ export const NavBtnLink = styled(Link)`
     color: #010606;
   }
 `;
+export const NavDropdown = styled(Link)`
+  color: #fff;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0 1rem;
+  height: 100%;
+  cursor: pointer;
+  &.active {
+    color: #15cdfc;
+  }
+`;
+
 

@@ -13,7 +13,7 @@ class Search extends Component {
   }
 
   handleGoClick () {
-    if (!this.props.github.isFetchingUser) {
+    if (!this.props.upmaster.isFetchingCourse) {
       this.props.actions.fetchUser(this.state)
     }
   }
