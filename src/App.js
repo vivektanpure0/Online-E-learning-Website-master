@@ -11,6 +11,8 @@ import Categories from './pages/categories';
 import Contact from './pages/contact';
 import SignUp from './pages/signup';
 import SignIn from './pages/signin';
+import Search from '../src/pages/search';
+
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
      <img src = {logo} className="text-center bg-info p-3" className = "logo">
 
      </img>
+     <Search></Search>
+     
         {/* <h1 className="text-center bg-info p-3">Online Courses</h1> */}
         <CourseInfo></CourseInfo>
       </div>
