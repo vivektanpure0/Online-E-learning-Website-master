@@ -1,59 +1,230 @@
-import React from 'react';
-import logo from "./UpMasters.png";
-import './App.css';
+import React, { Component } from "react";
+
+// import "C:/MyExes/bootstrap-4.0.0/dist/css/bootstrap.min.css";
+import "./App.css";
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+
+
+import AuthService from "./Components/services/auth.service";
 import CourseInfo from './Components/CourseInfo/CourseInfo';
 
-import Navbar from './Components/Navbar';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from './pages';
-import About from './pages/about';
-import Categories from './pages/categories';
-import Contact from './pages/contact';
-import SignUp from './pages/signup';
-import SignIn from './pages/signin';
-import Search from '../src/pages/search';
+// import { Link } from "react-router-dom";
+// import { Switch, Route } from 'react-router-dom';
+import Home from './pages/home.component';
+
+import Register from './pages/register.component';
+import Login from './pages/login.component.js';
+// import Search from '../src/pages/search';
 import Course from './Controller/Course';
+import Search from './Components/CourseSearch';
+
+import Profile from "./Components/profile.component";
+import BoardUser from "./Components/board-user.component";
+import BoardModerator from "./Components/board-moderator.component";
+import BoardAdmin from "./Components/board-admin.component";
+import EventBus from "./common/EventBus";
+import AdminMain from "./Controller/AdminMain";
+import CourseAll from "./Controller/CourseAll";
+import CourseSearch from "./Components/CourseSearch";
 
 
-function App() {
-  return (
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/about' component={About} />
-        <Route path='/categories' component={Categories} />
-        <Route path='/contact-us' component={Contact} />
-        <Route path='/sign-up' component={SignUp} />
-        <Route path='/sign-in' component={SignIn}/>
-       
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
 
-        <div className="container-fluid">
-       
-     
-     <img src = {logo} className="text-center bg-info p-3" className = "logo">
+    this.state = {
+      showModeratorBoard: false,
+      showAdminBoard: false,
+      currentUser: undefined,
+    };
+  }
 
-     </img>
-     <Course></Course>
-     <Search></Search>
+  componentDidMount() {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+    
+    EventBus.on("logout", () => {
+      this.logOut();
+    });
+  }
+
+  componentWillUnmount() {
+    EventBus.remove("logout");
+  }
+
+  logOut() {
+    AuthService.logout();
+    this.setState({
+      showModeratorBoard: false,
+      showAdminBoard: false,
+      currentUser: undefined,
+    });
+  }
+
+  render() {
+    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+
+    return (
+      <BrowserRouter>
+      <div>
+        <nav className="navbar navbar-expand navbar-dark bg-dark">
+          <Link to={"/"} className="navbar-brand">
+            UpMaster
+          </Link>
+          <div className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link to={"/home"} className="nav-link">
+                Home
+              </Link>
+            </li>
+
+            {currentUser && (
+            <li className="nav-item">
+              <Link to={"/course"} className="nav-link">
+                Course
+              </Link>
+            </li>
+            )}
+
+            {currentUser && (
+            <li className="nav-item">
+              <Link to={"/search"} className="nav-link">
+                Search
+              </Link>
+            </li>
+            )}
+
+            {showModeratorBoard && (
+              <li className="nav-item">
+                <Link to={"/mod"} className="nav-link">
+                  Moderator Board
+                </Link>
+              </li>
+            )}
+
+            {/* {showModeratorBoard && (
+              <li className="nav-item">
+                <Link to={"/moddata"} className="nav-link">
+                  Moderator Data
+                </Link>
+              </li>
+            )} */}
+
+
+            {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admin"} className="nav-link">
+                  Admin Board
+                </Link>
+              </li>
+            )}
+
+            {/* {showAdminBoard && (
+              <li className="nav-item">
+                <Link to={"/admindata"} className="nav-link">
+                  Admin Data
+                </Link>
+              </li>
+            )} */}
+
+            {currentUser && (
+              <li className="nav-item">
+                <Link to={"/user"} className="nav-link">
+                  User
+                </Link>
+              </li>
+            )}
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.username}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={this.logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
+          )}
+        </nav>
+
+
+        <div className="container mt-3">
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/user" component={BoardUser} />
+            <Route path="/mod" component={BoardModerator} />
+            {/* <Route path="/moddata" component={ModeratorJava} /> */}
+            <Route path="/admin" component={BoardAdmin} />
+            <Route path="/admincourse" component={CourseAll} />
+            <Route path="/admindata" component={AdminMain} />
+            <Route path="/search" component={CourseSearch} />
+            {/* <Route path="/course" component={Course} /> */}
+
+
+            <Course></Course>
+            {/* <Search></Search> */}
+            <CourseInfo></CourseInfo>
      
-     
-     {/* <li className="text-center bg-info p-3">
-                <Route to={"/coursedata"} className="text-center bg-info p-3">
-                  Course Data
-                </Route>
-              </li> */}
-     
-        {/* <h1 className="text-center bg-info p-3">Online Courses</h1> */}
-        <CourseInfo></CourseInfo>
+          </Switch>
+        </div>
+
+        { /*<AuthVerify logOut={this.logOut}/> */ }
+
       </div>
-      </Switch>
-    </Router>
-     
-     
-
-  );
+      </BrowserRouter>
+    );
+  }
 }
 
-
 export default App;
+ 
+
+
+       
+        
+       
+
+     
+       
+     
+    
+    
+   
+     
+     
+
+
+
+
+
+

@@ -4,21 +4,21 @@ var fakeData =
             "id":0,
             "title": "Learn Java with Tutorials",
             "author": "Herbert Schildt",
-            "price":1049,
+            "price":499.99,
              "img":"https://cdn.app.compendium.com/uploads/user/e7c690e8-6ff9-102a-ac6d-e4aebca50425/ed5569e8-c0dd-458c-8450-cde6300093bd/File/a5023b0f0fb67f59176a0499af9021ed/java_horz_clr.png"
         },
         {
             "id":1,
-            "title": "React Js",
+            "title": "C Fundamentals",
             "author": "Code with Mosh",
-            "price":999,
-            "img":"https://patoliyainfotech.com/wp-content/uploads/2019/10/one-year-of-react-native-705x397.png"
+            "price":599.99,
+            "img":"https://www.logo.wine/a/logo/C%2B%2B/C%2B%2B-Logo.wine.svg"
         },
         {
             "id":2,
             "title": "Python",
             "author": "Zed Shaw",
-            "price":1099,
+            "price":999.99,
             "img":"https://www.freecodecamp.org/news/content/images/size/w2000/2020/05/Python-language.png"
         },
         // {

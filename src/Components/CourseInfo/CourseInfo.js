@@ -29,6 +29,6 @@ const CourseInfo = () => {
             </div>
         </div>
     );
-};
+}; 
 
 export default CourseInfo;
