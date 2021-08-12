@@ -20,7 +20,7 @@ class CourseSearch extends Component {
     search(key) {
         console.warn(key)
         this.setState({lastSearch:key})
-        fetch("http://localhost:8082/coursebyid/"+key).then((data) => {
+        fetch("http://localhost:8082/coursebyid/"+cid).then((data) => {
             data.json().then((resp) => {
                 console.warn("resp", resp)
                 if(resp.length>0)
@@ -34,21 +34,21 @@ class CourseSearch extends Component {
             })
         })
     }
-    delete(id)
-    {
-        fetch('http://localhost:8082/deletecourse/'+id,
-        {
-            method: "DELETE",
-            // headers:{
-            //     'Content-Type':'application/json'
-            // },
-        }).then((result)=>{
-            result.json().then((resp)=>{
-                alert("Course has heen Deleted")
-                this.search(this.state.lastSearch)
-            })
-        })
-    }
+    // delete(id)
+    // {
+    //     fetch('http://localhost:8082/deletecourse/'+id,
+    //     {
+    //         method: "DELETE",
+    //         // headers:{
+    //         //     'Content-Type':'application/json'
+    //         // },
+    //     }).then((result)=>{
+    //         result.json().then((resp)=>{
+    //             alert("Course has heen Deleted")
+    //             this.search(this.state.lastSearch)
+    //         })
+    //     })
+    // }
     render() {
         return (
             <Container>

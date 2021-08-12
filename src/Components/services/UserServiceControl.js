@@ -12,6 +12,10 @@ class UserServiceControl {
     getCourses(){
         return axios.get(USERS_REST_API_URL + 'getallcourses', { headers: authHeader() });
     }
+
+    getCourses(){
+        return axios.get(USERS_REST_API_URL + 'coursebyid', { headers: authHeader() });
+    }
 }
 
 export default new UserServiceControl();
